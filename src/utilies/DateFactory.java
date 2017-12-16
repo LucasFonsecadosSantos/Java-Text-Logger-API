@@ -12,8 +12,8 @@ public class DateFactory {
     private Date currentDate;
 
     public DateFactory() {
-        this.completeDatePattern = new SimpleDateFormat("[dd/MM/yyyy | HH:mm:ss]");
-        this.onlyDatePattern = new SimpleDateFormat("[dd/MM/yyyy]");
+        this.completeDatePattern = new SimpleDateFormat("[dd-MM-yyyy | HH:mm:ss]");
+        this.onlyDatePattern = new SimpleDateFormat("[dd-MM-yyyy]");
         this.onlyTimePattern = new SimpleDateFormat("[HH:mm:ss]");
         this.currentDate = null;
     }

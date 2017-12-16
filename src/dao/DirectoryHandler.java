@@ -27,6 +27,8 @@ public class DirectoryHandler {
                 this.logsDirectory.mkdirs();
                 return this.logsDirectory;
             }else {
+                System.out.println("Folder exists");
+                System.out.println(this.logsDirectory);
                 return this.logsDirectory;
             }   
         } catch(Exception e) {

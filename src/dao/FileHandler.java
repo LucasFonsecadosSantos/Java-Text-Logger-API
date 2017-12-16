@@ -27,13 +27,15 @@ public class FileHandler {
     }
 
     public File createNewLogFile() {
-        System.out.println(this.directory.getAbsolutePath() + this.dateFactory.getOnlyDate() + ".txt");
-        this.file = new File(this.directory.getAbsolutePath() + this.dateFactory.getOnlyDate() + ".txt");
+        this.file = new File("../logs/" + this.dateFactory.getOnlyDate() + ".txt");
+        System.out.println(this.file);
         if(!this.file.exists()) {
             try {
+                this.file = new File("../logs/"+ this.dateFactory.getOnlyDate() + ".txt");
                 this.file.createNewFile();
                 return this.file;
             } catch(Exception e) {
+                System.out.println(e.toString());
                 return null;
             }
         }else {
