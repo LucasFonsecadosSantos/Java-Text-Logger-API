@@ -5,8 +5,9 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        FileHandler f = new FileHandler();
-        File file = f.createNewLogFile();
-        System.out.println(f.hashCode());
+        String[] name = {"lucas", "igao"};
+        StatusLogger logger = new StatusLogger("teste", "2.6", name);
+        logger.generateLog("YEABAAA");
+        logger.generateLog("DOLYCETA");
     }
 }

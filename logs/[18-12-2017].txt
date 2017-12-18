@@ -1,0 +1,16 @@
++------------------------------------------------+
++           LOG FILE GENERATOR TOOL              +
++ Java API developed by Lucas Fonseca dos Santos.+
++ General Public License. GPL-3.                 +
++------------------------------------------------+
+SOFTWARE: TESTE
+VERSION: Version: 0.0
+DEVELOPERS: lucas;igao;
++------------------------------------------------+
+
+[18-12-2017 | 11:23:49]: YEABAAA;
+[18-12-2017 | 11:23:49]: DOLYCETA;
+[18-12-2017 | 11:23:57]: YEABAAA;
+[18-12-2017 | 11:23:57]: DOLYCETA;
+[18-12-2017 | 11:24:03]: YEABAAA;
+[18-12-2017 | 11:24:03]: DOLYCETA;

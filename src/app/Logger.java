@@ -1,21 +1,32 @@
 package app;
 
 import dao.FileHandler;
+import utilies.DateFactory;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.IOException;
 
 public abstract class Logger {
 
-    private FileHandler FileHandler;
+    private FileHandler fileHandler;
+    private File logFile;
     private String softwareName;
     private String softwareVersion;
     private String[] softwareDevelopers;
     private String headerLogFile;
+    private DateFactory dateFactory;
 
     public Logger(String softwareName, String softwareVersion, String[] softwareDevelopers) {
+        this.fileHandler = new FileHandler();
+        this.logFile = this.fileHandler.createNewLogFile();
+        this.dateFactory = new DateFactory();
         setSoftwareName(softwareName);
         setSoftwareVersion(softwareVersion);
         setSoftwareDeveloper(softwareDevelopers);
         setLogFileHeader();
     }
+
+    public abstract void generateLog(String message);
 
     public void setSoftwareName(String name) {
         if(name != null) {
@@ -55,20 +66,49 @@ public abstract class Logger {
         return this.softwareDevelopers;
     }
 
+    public String getSystemTime() {
+        return this.dateFactory.getCompleteDate();
+    }
+
     public void setLogFileHeader() {
-        String header = "+------------------------------------------------+\n";
-        header += "+           LOG FILE GENERATOR TOOL              +\n";
-        header += "+ Java API developed by Lucas Fonseca dos Santos.+\n";
-        header += "+ General Public License. GPL-3.                 +\n";
-        header += "+------------------------------------------------+\n";
-        header += "SOFTWARE: " + getSoftwareName() + "\n";
-        header += "VERSION: " + getSoftwareVersion() + "\n";
-        String[] dev = getSoftwareDevelopers();
-        header += "DEVELOPERS: ";
-        for(String s : dev) {
-            header += s +";";
+        if(this.logFile.length() == 0) {
+            try {
+                FileWriter fw = new FileWriter(this.logFile);
+                String header = "+------------------------------------------------+\n";
+                header += "+           LOG FILE GENERATOR TOOL              +\n";
+                header += "+ Java API developed by Lucas Fonseca dos Santos.+\n";
+                header += "+ General Public License. GPL-3.                 +\n";
+                header += "+------------------------------------------------+\n";
+                header += "SOFTWARE: " + getSoftwareName() + "\n";
+                header += "VERSION: " + getSoftwareVersion() + "\n";
+                String[] dev = getSoftwareDevelopers();
+                header += "DEVELOPERS: ";
+                for(String s : dev) {
+                    header += s +";";
+                }
+                header += "\n+------------------------------------------------+\n";
+                fw.write(header);
+                fw.close();
+            } catch(IOException ioe) {
+                System.out.println(ioe.toString());
+            } catch(Exception e) {
+                System.out.println(e.toString());
+            }
+        }else {
+            return;
         }
     }
 
+    public void writeMessage(String message) {
+        try {
+            FileWriter fw = new FileWriter(this.logFile, true);
+            fw.write("\n" + message + ";");
+            fw.close();
+        } catch(IOException ioe) {
+            System.out.println(ioe.toString());
+        } catch(Exception e) {
+            System.out.println(e.toString());
+        }
+    }
 
 }
