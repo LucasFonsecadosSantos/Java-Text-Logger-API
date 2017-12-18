@@ -32,16 +32,48 @@ import java.io.FileNotFoundException;
 import java.io.EOFException;
 
 /**
+ * @author Lucas Fonseca dos Santos
+ * @since 11-18-2017
+ * @version 1.0
+ * 
+ * This class describes the File handler, prensents at
+ * the API. It is responsible for verifys the log data file
+ * and if this exists and other things.
  * 
  */
 public class FileHandler {
 
+    /**
+     * Log file name attribute.
+     */
     private String fileName;
+
+    /**
+     * Log file object attribute.
+     */
     private File file;
+
+    /**
+     * Log directory file attribute.
+     */
     private File directory;
+
+    /**
+     * DirectoryHandler object attribute.
+     */
     private DirectoryHandler directoryHandler;
+
+    /**
+     * DateFactory object attribute.
+     */
     private DateFactory dateFactory;
 
+    /**
+     * The FileHandler object constructor. It sets states to
+     * dateFactory, directoryHandler and directory as new objects
+     * and calls the creation new log file method that will
+     * makes new log file for will be used by the API.
+     */
     public FileHandler() {
         this.dateFactory = new DateFactory();
         this.directoryHandler = new DirectoryHandler();
@@ -49,6 +81,13 @@ public class FileHandler {
         createNewLogFile();
     }
 
+    /**
+     * This method is responsible for constructs new log file object with
+     * name as current system date, but in the first step, this method verifys
+     * if isn't already exists any log files with the same name.
+     * 
+     * @return File A file text log data object that has been created.
+     */
     public File createNewLogFile() {
         this.file = new File("../logs/" + this.dateFactory.getOnlyDate() + ".txt");
         if(!this.file.exists()) {
